@@ -3,16 +3,18 @@ import { proyectos } from '@/data/data.astro'
 import Layout from '@/layouts/Layout.astro'
 
 import { TaskIcon } from '@/icons/task'
-export async function getStaticPaths() {
-	return proyectos.map(({ slug, image, title, type }) => {
-		return {
-			params: { slug: slug.toString() },
-			props: { image, type, title }
-		}
-	})
-}
+// export async function getStaticPaths() {
+// 	return proyectos.map(({ slug, image, title, type }) => {
+// 		return {
+// 			params: { slug: slug.toString() },
+// 			props: { image, type, title }
+// 		}
+// 	})
+// }
 
-const { image, type, title } = Astro.props
+const { slug } = Astro.params
+// Encuentra el proyecto que coincida con el slug
+const project = proyectos.find((p) => p.slug === slug)
 ---
 
 <Layout description="Descripción del portafolio" title="Titulo del portafolio">
@@ -28,10 +30,14 @@ const { image, type, title } = Astro.props
 			<h2
 				class="article-title mt-7 text-2xl font-semibold leading-normal text-black dark:text-white lg:mt-10 lg:text-3xl lg:leading-normal"
 			>
-				{title}
+				{project?.title}
 			</h2>
 			<div class="thumb mb-4 mt-7 overflow-hidden rounded-xl xl:my-8 xl:rounded-2xl">
-				<img src={`/${image}`} class="aspect-[16/8] w-full object-cover" alt={title} />
+				<img
+					src={`/${project?.image}`}
+					class="aspect-[16/8] w-full object-cover"
+					alt={project?.title}
+				/>
 			</div>
 			<div class="post-meta my-8 mb-10 items-center justify-between max-sm:space-y-3.5 sm:flex">
 				<div>

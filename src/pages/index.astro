@@ -8,9 +8,9 @@ import Curriculum from './sections/Curriculum.astro'
 import Portafolio from './sections/Portafolio.astro'
 import Contacto from './sections/Contacto.astro'
 import { db } from 'astro:db'
-import { Projects } from 'astro:db'
-const projects = await db.select().from(Projects)
-console.log({ projects })
+// import { Projects } from 'astro:db'
+// const projects = await db.select().from(Projects)
+// console.log({ projects })
 ---
 
 <Layout description="Descripción del portafolio" title="Titulo del portafolio">
