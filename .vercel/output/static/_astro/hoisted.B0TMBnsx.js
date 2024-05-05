@@ -1,1 +1,0 @@
-import{S as e,N as i,P as s}from"./pagination.CXYsqrFt.js";new e(".skills-slider .swiper",{spaceBetween:30,slidesPerView:1,loop:!1,breakpoints:{400:{slidesPerView:2},600:{slidesPerView:3},800:{slidesPerView:4}},pagination:{type:"fraction",el:".swiper-paginations"},navigation:{nextEl:".button-next",prevEl:".button-prev"},modules:[i,s]});
