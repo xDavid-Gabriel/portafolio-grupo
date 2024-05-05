@@ -1,0 +1,135 @@
+---
+import { proyectos } from '@/data/data.astro'
+import Layout from '@/layouts/Layout.astro'
+
+import { TaskIcon } from '@/icons/task'
+export async function getStaticPaths() {
+	return proyectos.map(({ slug, image, title, type }) => {
+		return {
+			params: { slug: slug.toString() },
+			props: { image, type, title }
+		}
+	})
+}
+
+const { image, type, title } = Astro.props
+---
+
+<Layout description="Descripción del portafolio" title="Titulo del portafolio">
+	<main class="mt-[65px]">
+		<div class="2xl:p-13 rounded-2xl bg-white px-5 py-8 dark:bg-night-black md:p-8 lg:p-10">
+			<div
+				class="inline-flex items-center gap-2 rounded-full border border-platinum px-4 py-2 text-xs tracking-wide text-black dark:border-grey-black-200 dark:text-white lg:px-5"
+			>
+				<TaskIcon className="text-theme-color" />
+				Project Details
+			</div>
+
+			<h2
+				class="article-title mt-7 text-2xl font-semibold leading-normal text-black dark:text-white lg:mt-10 lg:text-3xl lg:leading-normal"
+			>
+				{title}
+			</h2>
+			<div class="thumb mb-4 mt-7 overflow-hidden rounded-xl xl:my-8 xl:rounded-2xl">
+				<img src={`/${image}`} class="aspect-[16/8] w-full object-cover" alt={title} />
+			</div>
+			<div class="post-meta my-8 mb-10 items-center justify-between max-sm:space-y-3.5 sm:flex">
+				<div>
+					<h6 class="text-black dark:text-white">CLIENTE</h6>
+					<p class="text-regular">Envato Tema</p>
+				</div>
+				<div>
+					<h6 class="text-black dark:text-white">SERVICIOS:</h6>
+					<p class="text-regular">Trucos y consejos, Diseño</p>
+				</div>
+				<div>
+					<h6 class="text-black dark:text-white">DURACIÓN</h6>
+					<p class="text-regular">108 horas</p>
+				</div>
+			</div>
+			<div>
+				<h3 class="mb-3 text-lg font-medium text-black dark:text-white xl:text-2xl">
+					Descripción del proyecto
+				</h3>
+				<p class="text-regular !leading-[2]">
+					Las autoridades de patentes de todo el mundo se enfrentan al reto de redefinir su enfoque
+					para gestionar las invenciones generadas no por el ingenio humano, sino por la IA. Esto ha
+					suscitado considerable debate en la comunidad de la propiedad intelectual. Este análisis
+					inicia una serie de tres partes que profundiza en la influencia de la IA en los derechos
+					de propiedad intelectual.
+				</p>
+
+				<div class="my-8 grid gap-5 sm:grid-cols-2 md:gap-8">
+					<div class="overflow-hidden rounded-xl xl:rounded-2xl">
+						<img
+							src="/assets/img/portfolio/portfolio-img1-2.png"
+							class="w-full"
+							alt="Project Inner Colum Image"
+						/>
+					</div>
+					<div class="overflow-hidden rounded-xl xl:rounded-2xl">
+						<img
+							src="/assets/img/portfolio/portfolio-img1-1.png"
+							class="w-full"
+							alt="Project Inner Colum Image"
+						/>
+					</div>
+				</div>
+
+				<h3 class="mb-10 mt-12 text-2xl font-medium text-black dark:text-white">Tecnologías</h3>
+				<div class="progressbar-wrap space-y-7">
+					<div class="progressbar flex flex-wrap items-center gap-5">
+						<div class="icon w-8">
+							<img src="/assets/img/skill/html.svg" alt="HTML5" />
+						</div>
+						<div class="bar flex-1">
+							<h5 class="progress-title-holder text-regular mb-2 text-black dark:text-white">
+								<span class="progress-title">HTML5</span>
+							</h5>
+						</div>
+					</div>
+					<div class="progressbar flex flex-wrap items-center gap-5">
+						<div class="icon w-8">
+							<img src="/assets/img/skill/css.svg" alt="CSS3" />
+						</div>
+						<div class="bar flex-1">
+							<h5 class="progress-title-holder text-regular mb-2 text-black dark:text-white">
+								<span class="progress-title">CSS3</span>
+							</h5>
+						</div>
+					</div>
+					<div class="progressbar flex flex-wrap items-center gap-5">
+						<div class="icon w-8">
+							<img src="/assets/img/skill/js.svg" alt="javascript" />
+						</div>
+						<div class="bar flex-1">
+							<h5 class="progress-title-holder text-regular mb-2 text-black dark:text-white">
+								<span class="progress-title">javascript</span>
+							</h5>
+						</div>
+					</div>
+					<div class="progressbar flex flex-wrap items-center gap-5">
+						<div class="icon w-8">
+							<img src="/assets/img/skill/tailwind.svg" alt="TailwindCSS" />
+						</div>
+						<div class="bar flex-1">
+							<h5 class="progress-title-holder text-regular mb-2 text-black dark:text-white">
+								<span class="progress-title">TailwindCSS</span>
+							</h5>
+						</div>
+					</div>
+					<div class="progressbar flex flex-wrap items-center gap-5">
+						<div class="icon w-8">
+							<img src="/assets/img/skill/figma.svg" alt="TailwindCSS" />
+						</div>
+						<div class="bar flex-1">
+							<h5 class="progress-title-holder text-regular mb-2 text-black dark:text-white">
+								<span class="progress-title">Figma</span>
+							</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</Layout>

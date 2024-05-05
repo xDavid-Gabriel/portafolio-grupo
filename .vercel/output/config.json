@@ -1,0 +1,59 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^\\/_image$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/api\\/projects\\/get-projects\\.json\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/sections\\/AcercaDe\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/sections\\/Contacto\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/sections\\/Curriculum\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/sections\\/Habilidades\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/sections\\/Hero\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/sections\\/Portafolio\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/sections\\/Servicios\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/([^/]+?)\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/$",
+			"dest": "_render"
+		}
+	]
+}
