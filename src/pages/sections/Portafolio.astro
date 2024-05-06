@@ -1,7 +1,9 @@
 ---
 import { TaskIcon } from '@/icons/task'
 import clsx from 'clsx'
-import { proyectos } from '@/data/data.astro'
+// import { proyectos } from '@/data/data.astro'
+const response = await fetch(`${Astro.url.origin}/api/projects/get-projects.json`)
+const proyectos = await response.json()
 ---
 
 <section
@@ -30,7 +32,7 @@ import { proyectos } from '@/data/data.astro'
 	<!--./section-title-->
 	<div class="grid gap-4 sm:grid-cols-2 lg:gap-[1.875rem]">
 		{
-			proyectos.map((proyecto, index) => {
+			proyectos.map((proyecto: any, index: number) => {
 				// Calcula el módulo del índice para determinar el span
 				let patternIndex = index % 6
 				let span
@@ -69,7 +71,7 @@ import { proyectos } from '@/data/data.astro'
 							<div class="position-center z-10 scale-110 text-center text-[2.45rem] font-semibold leading-[1.15] text-black opacity-0 transition duration-500 group-hover:scale-100 group-hover:opacity-100 dark:text-white max-lg:text-3xl xl:text-[1.5rem] 2xl:text-[2rem]">
 								{/* Especialización
 								<span class="text-stroke">en diseño</span> */}
-								{words.map((word, index) => {
+								{words.map((word: string, index: number) => {
 									const isStyled = proyecto.highlight.includes(word)
 									return (
 										<span class={clsx({ 'text-stroke': isStyled })}>

@@ -1,9 +1,13 @@
 import type { APIRoute } from 'astro'
+import { db, Projects } from 'astro:db'
 
-export const GET: APIRoute = ({ params, request }) => {
-	return new Response(
-		JSON.stringify({
-			message: '¡Esto es un GET!'
-		})
-	)
+export const GET: APIRoute = async ({ params, request }) => {
+	const projects = await db.select().from(Projects)
+	const projectsFormated = projects.map((project) => {
+		return {
+			...project,
+			highlight: JSON.parse(project.highlight as string)
+		}
+	})
+	return new Response(JSON.stringify(projectsFormated))
 }

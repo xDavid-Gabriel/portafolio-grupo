@@ -1,20 +1,30 @@
 ---
-import { proyectos } from '@/data/data.astro'
+import { proyectos as proyectosPath } from '@/data/data.astro'
 import Layout from '@/layouts/Layout.astro'
-
 import { TaskIcon } from '@/icons/task'
-// export async function getStaticPaths() {
-// 	return proyectos.map(({ slug, image, title, type }) => {
-// 		return {
-// 			params: { slug: slug.toString() },
-// 			props: { image, type, title }
-// 		}
-// 	})
-// }
+
+export async function getStaticPaths() {
+	// const response = await fetch(`http://localhost:4321/api/projects/get-projects.json`)
+	// const proyectos: any = await response.json()
+
+	return proyectosPath.map(({ slug }: any) => {
+		return {
+			params: { slug: slug.toString() }
+			// props: { image, type, title }
+		}
+	})
+}
 
 const { slug } = Astro.params
+const response = await fetch(`${Astro.url.origin}/api/projects/get-projects.json`)
+const proyectos: any = await response.json()
 // Encuentra el proyecto que coincida con el slug
-const project = proyectos.find((p) => p.slug === slug)
+const project = proyectos.find((p: any) => p.slug === slug)
+if (!project) {
+	return Astro.redirect('/404')
+}
+
+export const prerender = true
 ---
 
 <Layout description="Descripción del portafolio" title="Titulo del portafolio">
